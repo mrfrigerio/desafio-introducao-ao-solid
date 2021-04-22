@@ -1,0 +1,93 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Rocketseat Ignite",
+    "description": "Desafio Introdução ao SOLID",
+    "version": "1.0.0",
+    "contact": {
+      "email": "mrfrigerio@yahoo.com.br"
+    }
+  },
+  "paths": {
+    "/users": {
+
+      "post": {
+        "tags": ["users"],
+        "summary": "Criar um usuário",
+        "description": "Campos obrigatórios para a criação de um usuário",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "John Doe",
+                  "description": "johndoe@example.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso!"
+          },
+          "400": {
+            "description": "Email já está sendo utilizado!"
+          }
+        }
+      },
+      "get": {
+        "tags": ["users"],
+        "summary": "Retorna todos os usuários",
+        "description": "Somente usuário **admin** pode acessar",
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso!"
+          },
+          "400": {
+            "description": "Usuário não encontrado ou sem permissão!"
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": ["users"],
+        "summary": "Retorna um usuário específico",
+        "description": "Retorna um usuário específico com base no id",
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso!"
+          },
+          "404": {
+            "description": "Usuário não encontrado!"
+          }
+        }
+      }
+    },
+    "/users/{user_id}/admin": {
+      "patch": {
+        "tags": ["users"],
+        "summary": "Torna um usuário admin",
+        "description": "Torna um usuário administrador",
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso!"
+          },
+          "404": {
+            "description": "Usuário não encontrado!"
+          }
+        }
+      }
+    }
+  }
+}
